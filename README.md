@@ -1,3 +1,8 @@
+> **ain-soph/mlx-qwen3-asr `serving` branch** — v0.4.4 plus one change for serving on an M5 Ultra: greedy decoding
+> queues the step for the next token (`mx.async_eval`) before reading the current one on the host, as mlx-lm does.
+> Same tokens (LibriSpeech test-clean 100 files + a 16-minute recording identical); Qwen3-ASR-1.7B FP16 transcribes
+> those 100 files in 15.0 s instead of 16.7 s (1.11x), the 16-minute file in 16.2 s instead of 18.1 s.
+
 # mlx-qwen3-asr
 
 [![PyPI version](https://img.shields.io/pypi/v/mlx-qwen3-asr.svg)](https://pypi.org/project/mlx-qwen3-asr/)
