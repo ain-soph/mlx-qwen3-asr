@@ -1,7 +1,10 @@
-> **ain-soph/mlx-qwen3-asr `serving` branch** — v0.4.4 plus one change for serving on an M5 Ultra: greedy decoding
-> queues the step for the next token (`mx.async_eval`) before reading the current one on the host, as mlx-lm does.
-> Same tokens (LibriSpeech test-clean 100 files + a 16-minute recording identical); Qwen3-ASR-1.7B FP16 transcribes
-> those 100 files in 15.0 s instead of 16.7 s (1.11x), the 16-minute file in 16.2 s instead of 18.1 s.
+> **ain-soph fork (`serving` branch, based on upstream v0.4.4).** What differs from upstream:
+>
+> | Change | Why | Enable / default | Effect (M5 Ultra) |
+> |---|---|---|---|
+> | Greedy decoding queues the next step before reading the current token | every token waited for a host sync | always | Qwen3-ASR-1.7B, 100 LibriSpeech files 16.7 → 15.0 s (1.11×), 16-min file 18.1 → 16.2 s; tokens identical |
+>
+> Full numbers: [Speech to text in ain-soph/llm-serving](https://github.com/ain-soph/llm-serving/blob/main/docs/performance.md#语音转写). Upstream PRs: [#32](https://github.com/moona3k/mlx-qwen3-asr/pull/32) (open).
 
 # mlx-qwen3-asr
 
